@@ -1,6 +1,5 @@
-package com.yourname.keystone.screens // Update with your actual package name
+package com.keystone.screens // Fixed the package name!
 
-import com.keystone.components.PropertyCard
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,7 +12,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.yourname.keystone.components.PropertyCard // Update with your package path
 
 // Simple temporary data model for mocking the UI
 data class PropertyItem(
@@ -133,6 +131,31 @@ fun SummaryMetricCard(
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF1E293B)
             )
+        }
+    }
+}
+
+// Added the missing PropertyCard here so the file compiles perfectly!
+@Composable
+fun PropertyCard(propertyName: String, address: String, tenantName: String, status: String) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.White),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = propertyName, fontWeight = FontWeight.Bold, fontSize = 16.sp, color = Color(0xFF1E293B))
+            Text(text = address, color = Color.Gray, fontSize = 14.sp)
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                Text(text = "Tenant: $tenantName", fontSize = 14.sp, color = Color(0xFF1E293B))
+                Text(
+                    text = status,
+                    fontWeight = FontWeight.SemiBold,
+                    color = if (status == "Occupied") Color(0xFF10B981) else Color(0xFFEF4444)
+                )
+            }
         }
     }
 }
