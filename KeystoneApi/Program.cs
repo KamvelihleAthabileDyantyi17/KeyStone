@@ -1,7 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -14,28 +13,27 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+// In-memory property data for your Keystone app
+var properties = new List<PropertyModel>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    new PropertyModel(1, "Sunset Heights #4B", "124 Beach Rd, Sea Point", "John Doe", "Occupied"),
+    new PropertyModel(2, "Greenwood Villa", "45 Oak Ave, Rondebosch", "Jane Smith", "Occupied"),
+    new PropertyModel(3, "The Urban Loft #12", "88 Long St, City Bowl", "None", "Vacant"),
+    new PropertyModel(4, "Harbour View Studio", "120 Dock Rd, Foreshore", "Mike Ross", "Maintenance")
 };
 
-app.MapGet("/weatherforecast", () =>
+// Map the GET endpoint that your Android app will call
+app.MapGet("/api/properties", () => properties)
+   .WithName("GetProperties");
+
+// Map a POST endpoint to add new properties later
+app.MapPost("/api/properties", (PropertyModel newProperty) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    properties.Add(newProperty);
+    return Results.Created($"/api/properties/{newProperty.Id}", newProperty);
+});
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+// Data Model Record
+record PropertyModel(int Id, string Name, string Address, string Tenant, string Status);

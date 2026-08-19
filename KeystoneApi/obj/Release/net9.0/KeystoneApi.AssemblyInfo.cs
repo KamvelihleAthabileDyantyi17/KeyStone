@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KeystoneApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92e06a4c61ba0adf2e3fa69056538c7dd73364b0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10e480bc6a13dea2028d5de9d56af202303cd382")]
 [assembly: System.Reflection.AssemblyProductAttribute("KeystoneApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KeystoneApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
