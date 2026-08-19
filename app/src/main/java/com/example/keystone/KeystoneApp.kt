@@ -1,4 +1,4 @@
-package com.keystone
+package com.example.keystone
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -9,16 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.yourname.keystone.screens.DashboardScreen
+import com.keystone.screens.DashboardScreen
 
 @Composable
 fun KeystoneApp() {
     // This remembers where the user is in the app
     val navController = rememberNavController()
-
     Scaffold(
-        // We will build out the real bottom bar later, but this holds its place
-        // bottomBar = { KeystoneBottomBar(navController = navController) }
+        bottomBar = { KeystoneBottomBar(navController = navController) }
     ) { innerPadding ->
 
         // The NavHost is the container that swaps the screens in and out

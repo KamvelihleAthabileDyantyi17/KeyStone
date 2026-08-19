@@ -1,6 +1,5 @@
 package com.example.keystone
 
-import com.keystone.navigation.KeystoneApp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,7 +10,6 @@ import androidx.compose.ui.Modifier
 import com.keystone.ui.theme.KeystoneTheme
 
 // The slashes are removed below so it actually imports the file!
-import com.keystone.navigation.KeystoneApp
 
 class Keystone : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
